@@ -1,0 +1,14 @@
+body{
+  background-color: olive;
+  text-align: center;
+  font-size: 50px;
+  margin-top: 200px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1{
+  font-size: 100px;
+}
+.btn{
+  font-size: 50px;
+}
