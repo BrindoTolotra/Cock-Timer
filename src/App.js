@@ -1,31 +1,31 @@
+import {useState } from "react";
+import "./App.css";
+import {MyClock} from "./components/MyClock"
+import { Mytimer } from "./components/Mytimer";
 
-import { useState } from 'react';
-import { MyClock } from './components/MyClock';
-import { Mytimer } from './components/Mytimer';
-import './App.css'
-function ButtonChange(props){
-  const {className} = props;
-  const [state, setState] = useState(<MyClock/>);
-  const changeTimer = () =>{
-    setState(<Mytimer/>)
-  }
-  const changeClock = () =>{
-    setState(<MyClock/>)
-  }
-  return(
+function TodayDate({ isVisible }) {
+  return (
     <>
-    <p>{state}</p>
-    <button onClick={changeTimer} type="button" className={className}>Timer</button> 
-    <button onClick={changeClock} type="button" className={className}>Clock</button>
+      {/* if isVible == true : affiche la clock */}
+      <p>{isVisible && <MyClock/>}</p> 
+      {/* if isVible == false : affiche la timer */}
+      <p>{!isVisible && <Mytimer/>}</p>
+      <br />
     </>
-  )
+  );
 }
 
 function App() {
+  const [isVisible, setVisible] = useState(true);
+
+  const toggleVisibility = () => setVisible(!isVisible); 
   
   return (
-    
-    <ButtonChange className="btn btn-primary"/>
+        <>
+        <TodayDate isVisible={isVisible} />
+        {isVisible && <button onClick={toggleVisibility}>Timer</button>}
+        {!isVisible && <button onClick={toggleVisibility}>Clock</button>}
+        </>
   );
 }
 
